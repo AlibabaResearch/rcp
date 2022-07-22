@@ -23,7 +23,7 @@ python3 setup.py install
 ## Datasets
 We follow [HPLFlowNet](https://github.com/laoreja/HPLFlowNet) preprocessing methods:
 
-+ FlyingThings3D: Download and unzip the "Disparity", "Disparity Occlusions", "Disparity change", "Optical flow", "Flow Occlusions" for DispNet/FlowNet2.0 dataset subsets from the [FlyingThings3D website](https://lmb.informatik.uni-freiburg.de/resources/datasets/SceneFlowDatasets.en.html) (we used the paths from [this file](https://lmb.informatik.uni-freiburg.de/data/FlyingThings3D_subset/FlyingThings3D_subset_all_download_paths.txt), now they added torrent downloads) . They will be upzipped into the same directory, RAW_DATA_PATH. Then run the following script for 3D reconstruction:
++ FlyingThings3D: Download and unzip the "Disparity", "Disparity Occlusions", "Disparity change", "Optical flow", "Flow Occlusions" for DispNet/FlowNet2.0 dataset subsets from the [FlyingThings3D website](https://lmb.informatik.uni-freiburg.de/resources/datasets/SceneFlowDatasets.en.html) (we used the paths from [this file](https://lmb.informatik.uni-freiburg.de/data/FlyingThings3D_subset/FlyingThings3D_subset_all_download_paths.txt), now they added torrent downloads) . They will be unzipped into the same directory, RAW_DATA_PATH. Then run the following script for 3D reconstruction:
 ```
 python data/preprocess/process_flyingthings3d_subset.py --raw_data_path ${RAW_DATA_PATH} --save_path ${SAVE_PATH}/FlyingThings3D_subset_processed_35m --only_save_near_pts
 ```
@@ -59,7 +59,7 @@ python run.py -c configs/test/rcp_test_kitti.yaml --test_ckpt ${ft_ckpt}
 ```
 
 ## Pretrained Models
-[Dowload Link](https://virutalbuy-public.oss-cn-hangzhou.aliyuncs.com/share/rcp/rcp.ckpt)
+[Download Link](https://virutalbuy-public.oss-cn-hangzhou.aliyuncs.com/share/rcp/rcp.ckpt)
 
 | Datasets | EPE3D | Acc3DS | AccDR | Outliers3D |
 | :--- | :---: | :---: | :---: |  :---: |
@@ -81,5 +81,5 @@ If you find this code useful in your research, please cite:
 ```
 
 ## Acknowledgements
-Some code are borrowed from [Flowstep3d](https://github.com/yairkit/flowstep3d), [FLOT](https://github.com/valeoai/FLOT), [flownet3d_Pytorch](https://github.com/hyangwinter/flownet3d_pytorch) and [HPLFlowNet](https://github.com/laoreja/HPLFlowNet).
+Some code are borrowed from [Flowstep3d](https://github.com/yairkit/flowstep3d), [FLOT](https://github.com/valeoai/FLOT), [flownet3d_Pytorch](https://github.com/hyangwinter/flownet3d_pytorch), [HPLFlowNet](https://github.com/laoreja/HPLFlowNet) and [Pointnet2.PyTorch](https://github.com/sshaoshuai/Pointnet2.PyTorch).
 Thanks for these great projects.
