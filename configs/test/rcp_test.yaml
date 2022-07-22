@@ -1,0 +1,94 @@
+train: False
+
+task: sceneflow
+
+model_params: 
+  model_name: 'SF_RCP'
+  npoint: 8192
+  use_insrance_norm: False
+  use_curvature: True 
+
+exp_params:
+  disable_plots: True
+  batch_size: 8
+  num_workers: 32
+  train_iters: 8
+  val_iters: 8
+  test_iters: 8
+
+  data:
+    overfit_samples: null
+    train_dataset: null
+    train_data_root: null
+    test_dataset: flyingthings3d
+    test_data_root: /data/datasets/scene_flow/flyingthings3d
+    num_points: 8192
+    full: True
+    allow_less_points: False
+
+    data_process:
+      DEPTH_THRESHOLD: 35.
+      NO_CORR: True
+      IND_DIR: null
+
+    data_augmentation:
+      aug_together:
+        degree_range: 0.1745329252
+        shift_range: 1.
+        scale_low: 0.95
+        scale_high: 1.05
+        jitter_sigma: 0.01
+        jitter_clip: 0.00
+      aug_pc2:
+        degree_range: 0.
+        xy_shift_range: 0.
+        deg_max: False
+        shift_range: 0.2
+        jitter_sigma: 0.01
+        jitter_clip: 0.00
+      val_aug_pc2: null
+
+  loss:
+    loss_type: 'sv_l1_reg_v1'
+    w_data: [0.9]
+    w_smoothness: [0.1]
+    smoothness_loss_params:
+      w_knn: 3.
+      w_ball_q: 1.
+      knn_loss_params:
+        k: 16
+        radius: 0.5
+        loss_norm: 1
+      ball_q_loss_params:
+        k: 24
+        radius: 0.5
+        loss_norm: 1
+  optimizer:
+    type: 'AdamW'
+    lr: 0.000125
+    weight_decay: 0.01
+ 
+  scheduler:
+    type: 'MultiStepLR'
+    milestones: [1, 2, 3]
+    gamma: 0.5
+
+trainer_params:
+  deterministic: False # slower. reproduce.
+  strategy: 'ddp'
+  num_nodes: 1
+  gpus: 8
+  max_epochs: 90
+  num_sanity_val_steps: 3
+  check_val_every_n_epoch: 1
+  sync_batchnorm: True
+
+  resume_from_checkpoint: None
+
+logging_params:
+  ckpt:
+    save_dir: 'checkpoints/rcp_sup_ft'
+    top_k: 3
+    monitor: 'val_epe'
+
+  log: false
