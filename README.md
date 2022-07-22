@@ -5,7 +5,7 @@ This is the official PyTorch implementation code for RCP. For technical details,
 Xiaodong Gu, Chengzhou Tang, Weihao Yuan, Zuozhuo Dai, Siyu Zhu, Ping Tan <br />
 **[[Paper](https://arxiv.org/abs/2205.11028)]** <br />
 
-![frames](assets/rcp_arch_compressed.jpg)
+![frames](assets/rcp_arch.jpg)
 
 
 
